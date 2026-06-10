@@ -1,0 +1,613 @@
+Microsoft Windows [Version 10.0.26200.8524]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Program Files\MySQL\MySQL Server 9.7\bin>mysql -u root -p
+Enter password: ***********
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 122
+Server version: 9.7.0 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2026, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> ls
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ls' at line 1
+mysql> dir
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'dir' at line 1
+mysql> CREATE DATABASE MAHESH;
+Query OK, 1 row affected (0.403 sec)
+
+mysql> SHOW DATABASES;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mahesh             |
+| mysql              |
+| performance_schema |
+| quizdb             |
+| sys                |
+| world              |
++--------------------+
+7 rows in set (0.137 sec)
+
+mysql> DROP DATABASE MAHESH;
+Query OK, 0 rows affected (0.285 sec)
+
+mysql> SHOW DATABASES;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| quizdb             |
+| sys                |
+| world              |
++--------------------+
+6 rows in set (0.007 sec)
+
+mysql> CREATE DATABASE MAHESH;
+Query OK, 1 row affected (0.060 sec)
+
+mysql> USE DATABASE QUIZDB;
+ERROR 1049 (42000): Unknown database 'database'
+mysql> USE DATABASE quizdb;
+ERROR 1049 (42000): Unknown database 'database'
+mysql> USE DATABASE MAHESH;
+ERROR 1049 (42000): Unknown database 'database'
+mysql> USE MAHESH;
+Database changed
+mysql> CREATE TABLE STUDENTS(ID INT,NAME VARCHAR(20));
+Query OK, 0 rows affected (0.275 sec)
+
+mysql> SHOW TABLES;
++------------------+
+| Tables_in_mahesh |
++------------------+
+| students         |
++------------------+
+1 row in set (0.053 sec)
+
+mysql> DESC STUDENTS;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| ID    | int         | YES  |     | NULL    |       |
+| NAME  | varchar(20) | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+2 rows in set (0.077 sec)
+
+mysql> ALTER TABLE STUDENTS ADD PHNO CHAR(10);
+Query OK, 0 rows affected (0.425 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> DESC STUDENTS;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| ID    | int         | YES  |     | NULL    |       |
+| NAME  | varchar(20) | YES  |     | NULL    |       |
+| PHNO  | char(10)    | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+3 rows in set (0.017 sec)
+
+mysql> ALTER TABLE STUDENTS ADD PHNO CHAR(10),EMAIL VARCHAR(20);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'EMAIL VARCHAR(20)' at line 1
+mysql> ALTER TABLE STUDENTS ADD PHNO CHAR(10),ADD EMAIL VARCHAR(20);
+ERROR 1060 (42S21): Duplicate column name 'PHNO'
+mysql> ALTER TABLE STUDENTS ADD (PHNO CHAR(10), EMAIL VARCHAR(20));
+ERROR 1060 (42S21): Duplicate column name 'PHNO'
+mysql> ALTER TABLE STUDENTS ADD (PH CHAR(10), EMAIL VARCHAR(20));
+Query OK, 0 rows affected (0.260 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> DESC STUDENTS;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| ID    | int         | YES  |     | NULL    |       |
+| NAME  | varchar(20) | YES  |     | NULL    |       |
+| PHNO  | char(10)    | YES  |     | NULL    |       |
+| PH    | char(10)    | YES  |     | NULL    |       |
+| EMAIL | varchar(20) | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+5 rows in set (0.021 sec)
+
+mysql> MODIFY PHNO VARCHAR(20);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'MODIFY PHNO VARCHAR(20)' at line 1
+mysql> MODIFY PHNO INT;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'MODIFY PHNO INT' at line 1
+mysql> ALTER TABLE STUDENTS MODIFY PHNO INT;
+Query OK, 0 rows affected (0.357 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> DESC STUDENTS;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| ID    | int         | YES  |     | NULL    |       |
+| NAME  | varchar(20) | YES  |     | NULL    |       |
+| PHNO  | int         | YES  |     | NULL    |       |
+| PH    | char(10)    | YES  |     | NULL    |       |
+| EMAIL | varchar(20) | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+5 rows in set (0.013 sec)
+
+mysql> ALTER TABLE STUDENTS RENAME COLUMN NAME TO STUNAME;
+Query OK, 0 rows affected (0.104 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> DESC STUDENTS;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| ID      | int         | YES  |     | NULL    |       |
+| STUNAME | varchar(20) | YES  |     | NULL    |       |
+| PHNO    | int         | YES  |     | NULL    |       |
+| PH      | char(10)    | YES  |     | NULL    |       |
+| EMAIL   | varchar(20) | YES  |     | NULL    |       |
++---------+-------------+------+-----+---------+-------+
+5 rows in set (0.016 sec)
+
+mysql> ALTER TABLE STUDENTS DROP COLUMN PH;
+Query OK, 0 rows affected (0.243 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> ALTER TABLE STUDENTS DROP COLUMN EMAIL;
+Query OK, 0 rows affected (0.278 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> DESC STUDENTS;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| ID      | int         | YES  |     | NULL    |       |
+| STUNAME | varchar(20) | YES  |     | NULL    |       |
+| PHNO    | int         | YES  |     | NULL    |       |
++---------+-------------+------+-----+---------+-------+
+3 rows in set (0.012 sec)
+
+mysql> RENAME TABLE STUDENTS TO STUDENT_DETAILS;
+Query OK, 0 rows affected (0.163 sec)
+
+mysql> DESC STUDENTS;
+ERROR 1146 (42S02): Table 'mahesh.students' doesn't exist
+mysql>
+mysql> DESC STUDENT_DETAILS;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| ID      | int         | YES  |     | NULL    |       |
+| STUNAME | varchar(20) | YES  |     | NULL    |       |
+| PHNO    | int         | YES  |     | NULL    |       |
++---------+-------------+------+-----+---------+-------+
+3 rows in set (0.019 sec)
+
+mysql> CREATE DATABASE COLLEGE_DB
+    -> ;
+Query OK, 1 row affected (0.092 sec)
+
+mysql> SHOW DATABASES;
++--------------------+
+| Database           |
++--------------------+
+| college_db         |
+| information_schema |
+| mahesh             |
+| mysql              |
+| performance_schema |
+| quizdb             |
+| sys                |
+| world              |
++--------------------+
+8 rows in set (0.012 sec)
+
+mysql> USE COLLEGE_DB;
+Database changed
+mysql> CREATE TABLE STUDENTS(STU_ID INT,STU_NAME VARCHAR(20),AGE INT,GENDER VARCHAR(10),CITY VARCHAR(20));
+Query OK, 0 rows affected (0.179 sec)
+
+mysql> DESC STUDENTS;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| STU_ID   | int         | YES  |     | NULL    |       |
+| STU_NAME | varchar(20) | YES  |     | NULL    |       |
+| AGE      | int         | YES  |     | NULL    |       |
+| GENDER   | varchar(10) | YES  |     | NULL    |       |
+| CITY     | varchar(20) | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+5 rows in set (0.021 sec)
+
+mysql> ALTER TABLE STUDENTS ADD COLUMN EMAIL VARCHAR(20);
+Query OK, 0 rows affected (0.361 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> ALTER TABLE STUDENTS ADD COLUMN PHONENUMBER CHAR(10);
+Query OK, 0 rows affected (0.303 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> ALTER TABLE STUDENTS MODIFY STU_NAME VARCHAR(100);
+Query OK, 0 rows affected (0.309 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> ALTER TABLE STUDENTS RENAME COLUMN CITY TO STU_CITY;
+Query OK, 0 rows affected (0.145 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> DESC STUDENTS;
+
+
+
+
+
+sion 10.0.26200.8524]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Program Files\MySQL\MySQL Server 9.7\bin>mysql -u root -p
+Enter password: ***********
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 133
+Server version: 9.7.0 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2026, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> CREATE DATABASE PRACTICE
+    -> ;
+Query OK, 1 row affected (0.507 sec)
+
+mysql> USE PRACTICE
+Database changed
+mysql> CREATE TABLE EMPLOYEES(
+    -> CREATE DATABASE PRACTICE
+    -> .
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'CREATE DATABASE PRACTICE
+.' at line 2
+mysql> CREATE TABLE STUDENTS(STU_ID INT,STU_NAME VARCHAR(20),EMAIL VARCHAR(30));
+Query OK, 0 rows affected (0.758 sec)
+
+mysql> DESC STUDENTS;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| STU_ID   | int         | YES  |     | NULL    |       |
+| STU_NAME | varchar(20) | YES  |     | NULL    |       |
+| EMAIL    | varchar(30) | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+3 rows in set (0.349 sec)
+
+mysql> DROP STUDENTS;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'STUDENTS' at line 1
+mysql> DROP TABLE STUDENTS;
+Query OK, 0 rows affected (0.251 sec)
+
+mysql> CREATE TABLE STUDENTS(STU_ID INT,STU_NAME VARCHAR(20),EMAIL VARCHAR(30) NOTNULL);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'NOTNULL)' at line 1
+mysql> CREATE TABLE STUDENTS(STU_ID INT,STU_NAME VARCHAR(20),EMAIL VARCHAR(30) NOT NULL);
+Query OK, 0 rows affected (0.532 sec)
+
+mysql> DROP TABLE STUDENTS;
+Query OK, 0 rows affected (0.201 sec)
+
+mysql> CREATE TABLE STUDENTS(STU_ID INT,STU_NAME VARCHAR(20) NOT NULL,EMAIL VARCHAR(30) NOTNULL);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'NOTNULL)' at line 1
+mysql> CREATE TABLE STUDENTS(STU_ID INT,STU_NAME VARCHAR(20) NOT NULL,EMAIL VARCHAR(30) NOT NULL);
+Query OK, 0 rows affected (0.490 sec)
+
+mysql> DESC STUDENTS;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| STU_ID   | int         | YES  |     | NULL    |       |
+| STU_NAME | varchar(20) | NO   |     | NULL    |       |
+| EMAIL    | varchar(30) | NO   |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+3 rows in set (0.319 sec)
+
+mysql> INSERT  INTO STUDENTS(1,'MAHESH',maheshroyal@gmail.com);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '1,'MAHESH',maheshroyal@gmail.com)' at line 1
+mysql> INSERT  INTO STUDENTS(1,'MAHESH','maheshroyal@gmail.com');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '1,'MAHESH','maheshroyal@gmail.com')' at line 1
+mysql> INSERT  INTO STUDENTS(STU_ID,STU_NAME,EMAIL)INTO('MAHESH','maheshroyal@gmail.com');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'INTO('MAHESH','maheshroyal@gmail.com')' at line 1
+mysql> INSERT INTO Students (ID, Name, Email)
+    -> VALUES (1, 'MAHESH', 'maheshroyal@gmail.com');
+ERROR 1054 (42S22): Unknown column 'ID' in 'field list'
+mysql> INSERT INTO Students (STU_ID, STU_NAME, EMAIL)
+    -> VALUES (1,'MAHESH',maheshroyal7479@gmail.com');
+    '>
+    '> );
+    '>
+    '>
+    '>
+    '> ;
+    '>
+    '> s
+    '> c.
+    '> a
+    '>
+    '> cs
+    '> ac
+    '> ^C
+mysql> INSERT INTO Students (STU_ID, STU_NAME, EMAIL)
+    -> VALUES (1, 'MAHESH', 'maheshroyal7479@gmail.com');
+Query OK, 1 row affected (0.369 sec)
+
+mysql> insert into students values(2,'haresg',null);
+ERROR 1048 (23000): Column 'EMAIL' cannot be null
+mysql> alter table students modify email varchar(50) unique;
+Query OK, 0 rows affected (1.293 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc students;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| STU_ID   | int         | YES  |     | NULL    |       |
+| STU_NAME | varchar(20) | NO   |     | NULL    |       |
+| email    | varchar(50) | YES  | UNI | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+3 rows in set (0.350 sec)
+
+mysql> insert into students values(2,'haresg',mahesh@gmail.com);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '@gmail.com)' at line 1
+mysql> insert into students values(2,'haresg','mahesh@gmail.com');
+Query OK, 1 row affected (0.327 sec)
+
+mysql> insert into students values(2,'hares','mahesh@gmail.com');
+ERROR 1062 (23000): Duplicate entry 'mahesh@gmail.com' for key 'students.email'
+mysql> select * from  students;
++--------+----------+---------------------------+
+| STU_ID | STU_NAME | email                     |
++--------+----------+---------------------------+
+|      1 | MAHESH   | maheshroyal7479@gmail.com |
+|      2 | haresg   | mahesh@gmail.com          |
++--------+----------+---------------------------+
+2 rows in set (0.009 sec)
+
+mysql> alter table students modify STU_ID INT  PRIMARY KEY;
+Query OK, 0 rows affected (0.775 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc students;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| STU_ID   | int         | NO   | PRI | NULL    |       |
+| STU_NAME | varchar(20) | NO   |     | NULL    |       |
+| email    | varchar(50) | YES  | UNI | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+3 rows in set (0.022 sec)
+
+mysql> VALUES (1, 'MAHESH', 'maheshroyal7479@gmail.com');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(1, 'MAHESH', 'maheshroyal7479@gmail.com')' at line 1
+mysql> VALUES (3, 'MAHESH', 'maheshroyal7479@gmail.com');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(3, 'MAHESH', 'maheshroyal7479@gmail.com')' at line 1
+mysql> VALUES (3, 'MAHESH', 'maheshroyal747@gmail.com');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(3, 'MAHESH', 'maheshroyal747@gmail.com')' at line 1
+mysql> VALUES (3, 'MAHEH', 'maheshroyal747@gmail.com');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(3, 'MAHEH', 'maheshroyal747@gmail.com')' at line 1
+mysql> insert into students values(3,'hares2','mahesh2@gmail.com');
+Query OK, 1 row affected (0.354 sec)
+
+mysql> insert into students values(3,'hares2','mahesh2@gmail.com');
+ERROR 1062 (23000): Duplicate entry '3' for key 'students.PRIMARY'
+mysql> insert into students values(3,'haresE2','mahesh2@gmail.com');
+ERROR 1062 (23000): Duplicate entry '3' for key 'students.PRIMARY'
+mysql> select * from  students;
++--------+----------+---------------------------+
+| STU_ID | STU_NAME | email                     |
++--------+----------+---------------------------+
+|      1 | MAHESH   | maheshroyal7479@gmail.com |
+|      2 | haresg   | mahesh@gmail.com          |
+|      3 | hares2   | mahesh2@gmail.com         |
++--------+----------+---------------------------+
+3 rows in set (0.007 sec)
+
+mysql> alter table students modify STU_ID INT AUTO_INCREMENT PRIMARY KEY;
+ERROR 1068 (42000): Multiple primary key defined
+mysql> alter table students modify STU_ID INT AUTO_INCREMENT ;
+Query OK, 3 rows affected (0.391 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> insert into students values('haresE22','mahesY2@gmail.com');
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+mysql> TRUNCATE TABLE STUDENTS;
+Query OK, 0 rows affected (0.212 sec)
+
+mysql> SELECT * FROM STUDENTS;
+Empty set (0.013 sec)
+
+mysql> insert into students values('haresE22','mahesY2@gmail.com');
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+mysql> insert into students values(NULL,'haresE22','mahesY2@gmail.com');
+Query OK, 1 row affected (0.061 sec)
+
+mysql> SELECT * FROM STUDENTS;
++--------+----------+-------------------+
+| STU_ID | STU_NAME | email             |
++--------+----------+-------------------+
+|      1 | haresE22 | mahesY2@gmail.com |
++--------+----------+-------------------+
+1 row in set (0.004 sec)
+
+mysql> insert into students values(NULL'haresE2W2','mahesE2@gmail.com');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''haresE2W2','mahesE2@gmail.com')' at line 1
+mysql> insert into students values(NULL,'haresE2W2','mahesE2@gmail.com');
+Query OK, 1 row affected (0.066 sec)
+
+mysql> SELECT * FROM STUDENTS;
++--------+-----------+-------------------+
+| STU_ID | STU_NAME  | email             |
++--------+-----------+-------------------+
+|      1 | haresE22  | mahesY2@gmail.com |
+|      2 | haresE2W2 | mahesE2@gmail.com |
++--------+-----------+-------------------+
+2 rows in set (0.004 sec)
+
+mysql> ALTER TABLE STUDENTS ADD CITY VARCHAR(50),DEFAULT 'MPL';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''MPL'' at line 1
+mysql> ALTER TABLE STUDENTS ADD CITY VARCHAR(50) DEFAULT 'MPL';
+Query OK, 0 rows affected (0.139 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> SELECT * FROM STUDENTS;
++--------+-----------+-------------------+------+
+| STU_ID | STU_NAME  | email             | CITY |
++--------+-----------+-------------------+------+
+|      1 | haresE22  | mahesY2@gmail.com | MPL  |
+|      2 | haresE2W2 | mahesE2@gmail.com | MPL  |
++--------+-----------+-------------------+------+
+2 rows in set (0.005 sec)
+
+mysql> ALTER TABLE STUDENTS ADD SALAERY INT CHECK(SALARY>0);
+ERROR 3813 (HY000): Column check constraint 'students_chk_1' references other column.
+mysql> ALTER TABLE STUDENTS ADD SALARY INT CHECK(SALARY>0);
+Query OK, 2 rows affected (0.360 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> insert into students values(NULL,'haresE2W2','mahesE2@gmail.com',10);
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+mysql> insert into students values(NULL,'haresE2W2','mahesE2@gmail.com',NULL,10);
+ERROR 1062 (23000): Duplicate entry 'mahesE2@gmail.com' for key 'students.email'
+mysql> insert into students values(NULL,'haresE32W2','mahesE52@gmail.com',NULL,10);
+Query OK, 1 row affected (0.065 sec)
+
+mysql> SELECT * FROM STUDENTS;
++--------+------------+--------------------+------+--------+
+| STU_ID | STU_NAME   | email              | CITY | SALARY |
++--------+------------+--------------------+------+--------+
+|      1 | haresE22   | mahesY2@gmail.com  | MPL  |   NULL |
+|      2 | haresE2W2  | mahesE2@gmail.com  | MPL  |   NULL |
+|      4 | haresE32W2 | mahesE52@gmail.com | NULL |     10 |
++--------+------------+--------------------+------+--------+
+3 rows in set (0.010 sec)
+
+mysql> ALTER TABLE STUDENTS ADD CITY VARCHAR(50),DEFAULT 'MPL';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''MPL'' at line 1
+mysql> ALTER TABLE STUDENTS ADD CITY VARCHAR(50) DEFAULT 'MPL';
+ERROR 1060 (42S21): Duplicate column name 'CITY'
+mysql> ALTER TABLE STUDENTS MODIFY CITY VARCHAR(20) DEFAULT 'MPL';
+Query OK, 3 rows affected (0.373 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> SELECT * FROM STUDENTS;
++--------+------------+--------------------+------+--------+
+| STU_ID | STU_NAME   | email              | CITY | SALARY |
++--------+------------+--------------------+------+--------+
+|      1 | haresE22   | mahesY2@gmail.com  | MPL  |   NULL |
+|      2 | haresE2W2  | mahesE2@gmail.com  | MPL  |   NULL |
+|      4 | haresE32W2 | mahesE52@gmail.com | NULL |     10 |
++--------+------------+--------------------+------+--------+
+3 rows in set (0.004 sec)
+
+mysql> insert into students values(NULL,'haresE32WE2','mahesE52T@gmail.com',NULL,16);
+Query OK, 1 row affected (0.029 sec)
+
+mysql> SELECT * FROM STUDENTS;
++--------+-------------+---------------------+------+--------+
+| STU_ID | STU_NAME    | email               | CITY | SALARY |
++--------+-------------+---------------------+------+--------+
+|      1 | haresE22    | mahesY2@gmail.com   | MPL  |   NULL |
+|      2 | haresE2W2   | mahesE2@gmail.com   | MPL  |   NULL |
+|      4 | haresE32W2  | mahesE52@gmail.com  | NULL |     10 |
+|      5 | haresE32WE2 | mahesE52T@gmail.com | NULL |     16 |
++--------+-------------+---------------------+------+--------+
+4 rows in set (0.005 sec)
+
+mysql> TRUNCATE TABLE STUDENTS;
+Query OK, 0 rows affected (0.276 sec)
+
+mysql> ALTER TABLE STUDENTS ADD CITY VARCHAR(50) DEFAULT '';
+ERROR 1060 (42S21): Duplicate column name 'CITY'
+mysql> ALTER TABLE STUDENTS MODIFY CITY VARCHAR(20) DEFAULT 'MPL';
+Query OK, 0 rows affected (0.083 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> insert into students values(NULL,'haresE32W2','mahesE52@gmail.com',NULL,10);
+Query OK, 1 row affected (0.057 sec)
+
+mysql> SELECT * FROM STUDENTS;
++--------+------------+--------------------+------+--------+
+| STU_ID | STU_NAME   | email              | CITY | SALARY |
++--------+------------+--------------------+------+--------+
+|      1 | haresE32W2 | mahesE52@gmail.com | NULL |     10 |
++--------+------------+--------------------+------+--------+
+1 row in set (0.005 sec)
+
+mysql> CREATE TABLE S
+    -> ;
+ERROR 4028 (HY000): A table must have at least one visible column.
+mysql> CREATE TABLE S(A VARCHAR(20));
+Query OK, 0 rows affected (0.145 sec)
+
+mysql> INSERT INTO S VALUES('HI');
+Query OK, 1 row affected (0.070 sec)
+
+mysql> ALTER TABLE S ADD CITY VARCHAR(20) DEFAULT '';
+Query OK, 0 rows affected (0.121 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> SELECT * FROM S;
++------+------+
+| A    | CITY |
++------+------+
+| HI   |      |
++------+------+
+1 row in set (0.005 sec)
+
+mysql> ALTER TABLE S MODIFY CITY CHAR(20) DEFAULT 'MPL';
+Query OK, 1 row affected (0.299 sec)
+Records: 1  Duplicates: 0  Warnings: 0
+
+mysql> SELECT * FROM S;
++------+------+
+| A    | CITY |
++------+------+
+| HI   |      |
++------+------+
+1 row in set (0.004 sec)
+
+mysql> INSERT INTO S VALUES('H');
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+mysql> INSERT INTO S VALUES('H',NULL);
+Query OK, 1 row affected (0.068 sec)
+
+mysql> SELECT * FROM S;
++------+------+
+| A    | CITY |
++------+------+
+| HI   |      |
+| H    | NULL |
++------+------+
+2 rows in set (0.005 sec)
+
++-------------+--------------+------+-----+---------+-------+
+| Field       | Type         | Null | Key | Default | Extra |
++-------------+--------------+------+-----+---------+-------+
+| STU_ID      | int          | YES  |     | NULL    |       |
+| STU_NAME    | varchar(100) | YES  |     | NULL    |       |
+| AGE         | int          | YES  |     | NULL    |       |
+| GENDER      | varchar(10)  | YES  |     | NULL    |       |
+| STU_CITY    | varchar(20)  | YES  |     | NULL    |       |
+| EMAIL       | varchar(20)  | YES  |     | NULL    |       |
+| PHONENUMBER | char(10)     | YES  |     | NULL    |       |
++-------------+--------------+------+-----+---------+-------+
+7 rows in set (0.041 sec)
+
+mysql>
