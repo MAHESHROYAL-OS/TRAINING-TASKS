@@ -1,0 +1,268 @@
+
+mysql> TRUNCATE TABLE EMPLOYE;
+Query OK, 0 rows affected (0.242 sec)
+
+mysql> INSERT INTO EMPLOYE VALUES (101,'SARAN','IT',5500);
+Query OK, 1 row affected (0.066 sec)
+
+mysql> INSERT INTO EMPLOYE VALUES(NULL,'ANITHA','HR',45000);
+Query OK, 1 row affected (0.061 sec)
+
+mysql> INSERT INTO EMPLOYE VALUES(NULL,'KARTHIK','HR',60000);
+Query OK, 1 row affected (0.059 sec)
+
+mysql> INSERT INTO EMPLOYE VALUES(NULL,'SNEHA','IT',65000);
+Query OK, 1 row affected (0.065 sec)
+
+mysql> INSERT INTO EMPLOYE VALUES(NULL,'ARJUN','MARKETING',48000);
+Query OK, 1 row affected (0.027 sec)
+
+mysql> INSERT INTO EMPLOYE VALUES(NULL,'SOWMYA','HR',52000);
+Query OK, 1 row affected (0.038 sec)
+
+mysql> INSERT INTO EMPLOYE VALUES(NULL,'VARUN','FINANCE',58000);
+Query OK, 1 row affected (0.058 sec)
+
+mysql> INSERT INTO EMPLOYE VALUES(NULL,'PRIYA','IT',62000);
+Query OK, 1 row affected (0.040 sec)
+
+mysql> INSERT INTO EMPLOYE VALUES(NULL,'CHARAN','SALES',43000);
+Query OK, 1 row affected (0.029 sec)
+
+mysql> INSERT INTO EMPLOYE VALUES(NULL,'SRAVYA','MARKETING',70000);
+Query OK, 1 row affected (0.034 sec)
+
+mysql> INSERT INTO EMPLOYE VALUES(NULL,'RAHUL','IT',54000);
+Query OK, 1 row affected (0.039 sec)
+
+mysql> INSERT INTO EMPLOYE VALUES(NULL,'DEEPA','IT',54000);
+Query OK, 1 row affected (0.056 sec)
+
+mysql> INSERT INTO EMPLOYE VALUES(NULL,'NIKHIL','FINANCE',51000);
+Query OK, 1 row affected (0.030 sec)
+
+mysql> INSERT INTO EMPLOYE VALUES(NULL,'TEJAS','IT',67000);
+Query OK, 1 row affected (0.063 sec)
+
+mysql> INSERT INTO EMPLOYE VALUES(NULL,'RISHI','SALES',46000);
+Query OK, 1 row affected (0.027 sec)
+
+mysql> INSERT INTO EMPLOYE VALUES(NULL,'HARSHA','HR',61000);
+Query OK, 1 row affected (0.056 sec)
+
+mysql> INSERT INTO EMPLOYE VALUES(NULL,'TARUN','FINANCE',72000);
+Query OK, 1 row affected (0.068 sec)
+
+mysql> INSERT INTO EMPLOYE VALUES(NULL,'SHREYA','MARKETING',53000);
+Query OK, 1 row affected (0.058 sec)
+
+mysql> INSERT INTO EMPLOYE VALUES(NULL,'KIRAN','IT',49000);
+Query OK, 1 row affected (0.056 sec)
+
+mysql> INSERT INTO EMPLOYE VALUES(NULL,'BAVANA','SALES',57000);
+Query OK, 1 row affected (0.053 sec)
+
+mysql> SELECT * FROM EMPLOYE;
++-------+---------+-----------+-----------+
+| EM_ID | EM_NAME | EM_DEPART | EM_SALARY |
++-------+---------+-----------+-----------+
+|   101 | SARAN   | IT        |      5500 |
+|   102 | ANITHA  | HR        |     45000 |
+|   103 | KARTHIK | HR        |     60000 |
+|   104 | SNEHA   | IT        |     65000 |
+|   105 | ARJUN   | MARKETING |     48000 |
+|   106 | SOWMYA  | HR        |     52000 |
+|   107 | VARUN   | FINANCE   |     58000 |
+|   108 | PRIYA   | IT        |     62000 |
+|   109 | CHARAN  | SALES     |     43000 |
+|   110 | SRAVYA  | MARKETING |     70000 |
+|   111 | RAHUL   | IT        |     54000 |
+|   112 | DEEPA   | IT        |     54000 |
+|   113 | NIKHIL  | FINANCE   |     51000 |
+|   114 | TEJAS   | IT        |     67000 |
+|   115 | RISHI   | SALES     |     46000 |
+|   116 | HARSHA  | HR        |     61000 |
+|   117 | TARUN   | FINANCE   |     72000 |
+|   118 | SHREYA  | MARKETING |     53000 |
+|   119 | KIRAN   | IT        |     49000 |
+|   120 | BAVANA  | SALES     |     57000 |
++-------+---------+-----------+-----------+
+20 rows in set (0.006 sec)
+
+mysql> UPDATE EMPLOYE SET EM_SALARY=55000 WHERE EM_ID=101;
+Query OK, 1 row affected (0.044 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> UPDATE EMPLOYE SET EM_DEPART='HR' WHERE EM_ID=112;
+Query OK, 1 row affected (0.057 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> UPDATE EMPLOYE SET EM_SALARY=47000 WHERE EM_ID=112;
+Query OK, 1 row affected (0.055 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> SELECT * FROM EMPLOYE;
++-------+---------+-----------+-----------+
+| EM_ID | EM_NAME | EM_DEPART | EM_SALARY |
++-------+---------+-----------+-----------+
+|   101 | SARAN   | IT        |     55000 |
+|   102 | ANITHA  | HR        |     45000 |
+|   103 | KARTHIK | HR        |     60000 |
+|   104 | SNEHA   | IT        |     65000 |
+|   105 | ARJUN   | MARKETING |     48000 |
+|   106 | SOWMYA  | HR        |     52000 |
+|   107 | VARUN   | FINANCE   |     58000 |
+|   108 | PRIYA   | IT        |     62000 |
+|   109 | CHARAN  | SALES     |     43000 |
+|   110 | SRAVYA  | MARKETING |     70000 |
+|   111 | RAHUL   | IT        |     54000 |
+|   112 | DEEPA   | HR        |     47000 |
+|   113 | NIKHIL  | FINANCE   |     51000 |
+|   114 | TEJAS   | IT        |     67000 |
+|   115 | RISHI   | SALES     |     46000 |
+|   116 | HARSHA  | HR        |     61000 |
+|   117 | TARUN   | FINANCE   |     72000 |
+|   118 | SHREYA  | MARKETING |     53000 |
+|   119 | KIRAN   | IT        |     49000 |
+|   120 | BAVANA  | SALES     |     57000 |
++-------+---------+-----------+-----------+
+20 rows in set (0.006 sec)
+
+mysql> SELECT EM_NAME FROM EMLOYE;
+ERROR 1146 (42S02): Table 'employe.emloye' doesn't exist
+mysql> SELECT EM_NAME FROM EMPLOYE;
++---------+
+| EM_NAME |
++---------+
+| SARAN   |
+| ANITHA  |
+| KARTHIK |
+| SNEHA   |
+| ARJUN   |
+| SOWMYA  |
+| VARUN   |
+| PRIYA   |
+| CHARAN  |
+| SRAVYA  |
+| RAHUL   |
+| DEEPA   |
+| NIKHIL  |
+| TEJAS   |
+| RISHI   |
+| HARSHA  |
+| TARUN   |
+| SHREYA  |
+| KIRAN   |
+| BAVANA  |
++---------+
+20 rows in set (0.006 sec)
+
+mysql> SELECT EM_NAME AND EM_SALARY FROM EMPLOYE;
++-----------------------+
+| EM_NAME AND EM_SALARY |
++-----------------------+
+|                     0 |
+|                     0 |
+|                     0 |
+|                     0 |
+|                     0 |
+|                     0 |
+|                     0 |
+|                     0 |
+|                     0 |
+|                     0 |
+|                     0 |
+|                     0 |
+|                     0 |
+|                     0 |
+|                     0 |
+|                     0 |
+|                     0 |
+|                     0 |
+|                     0 |
+|                     0 |
++-----------------------+
+20 rows in set, 20 warnings (0.008 sec)
+
+mysql> SELECT EM_NAME , EM_SALARY FROM EMPLOYE;
++---------+-----------+
+| EM_NAME | EM_SALARY |
++---------+-----------+
+| SARAN   |     55000 |
+| ANITHA  |     45000 |
+| KARTHIK |     60000 |
+| SNEHA   |     65000 |
+| ARJUN   |     48000 |
+| SOWMYA  |     52000 |
+| VARUN   |     58000 |
+| PRIYA   |     62000 |
+| CHARAN  |     43000 |
+| SRAVYA  |     70000 |
+| RAHUL   |     54000 |
+| DEEPA   |     47000 |
+| NIKHIL  |     51000 |
+| TEJAS   |     67000 |
+| RISHI   |     46000 |
+| HARSHA  |     61000 |
+| TARUN   |     72000 |
+| SHREYA  |     53000 |
+| KIRAN   |     49000 |
+| BAVANA  |     57000 |
++---------+-----------+
+20 rows in set (0.009 sec)
+
+mysql> SELECT EM_ID , EM_DEPART FROM EMPLOYE;
++-------+-----------+
+| EM_ID | EM_DEPART |
++-------+-----------+
+|   101 | IT        |
+|   102 | HR        |
+|   103 | HR        |
+|   104 | IT        |
+|   105 | MARKETING |
+|   106 | HR        |
+|   107 | FINANCE   |
+|   108 | IT        |
+|   109 | SALES     |
+|   110 | MARKETING |
+|   111 | IT        |
+|   112 | HR        |
+|   113 | FINANCE   |
+|   114 | IT        |
+|   115 | SALES     |
+|   116 | HR        |
+|   117 | FINANCE   |
+|   118 | MARKETING |
+|   119 | IT        |
+|   120 | SALES     |
++-------+-----------+
+20 rows in set (0.004 sec)
+
+mysql> SELECT EM_NAME , EM_DEPART,EM_SALARY FROM EMPLOYE;
++---------+-----------+-----------+
+| EM_NAME | EM_DEPART | EM_SALARY |
++---------+-----------+-----------+
+| SARAN   | IT        |     55000 |
+| ANITHA  | HR        |     45000 |
+| KARTHIK | HR        |     60000 |
+| SNEHA   | IT        |     65000 |
+| ARJUN   | MARKETING |     48000 |
+| SOWMYA  | HR        |     52000 |
+| VARUN   | FINANCE   |     58000 |
+| PRIYA   | IT        |     62000 |
+| CHARAN  | SALES     |     43000 |
+| SRAVYA  | MARKETING |     70000 |
+| RAHUL   | IT        |     54000 |
+| DEEPA   | HR        |     47000 |
+| NIKHIL  | FINANCE   |     51000 |
+| TEJAS   | IT        |     67000 |
+| RISHI   | SALES     |     46000 |
+| HARSHA  | HR        |     61000 |
+| TARUN   | FINANCE   |     72000 |
+| SHREYA  | MARKETING |     53000 |
+| KIRAN   | IT        |     49000 |
+| BAVANA  | SALES     |     57000 |
++---------+-----------+-----------+
+20 rows in set (0.004 sec)
+
+mysql>
