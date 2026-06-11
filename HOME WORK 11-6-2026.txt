@@ -1,0 +1,700 @@
+icrosoft Windows [Version 10.0.26200.8655]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Program Files\MySQL\MySQL Server 9.7\bin>mysql -u root -p
+Enter password: ***********
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 13
+Server version: 9.7.0 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2026, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> CREATE DATABASE EMPLOYEE;
+Query OK, 1 row affected (0.888 sec)
+
+mysql> USE EMPLOYEE;
+Database changed
+mysql> CREATE TABLE EMPLOYEE(EM_ID INT,EM_NAME VARCHAR(50),EM_DEPART VARCHAR(50),EM_SALARY INT);
+Query OK, 0 rows affected (1.034 sec)
+
+mysql> ALTER TABLE EMPLOYEE MODIFY EM_ID INT AUTO_INCREMENT;
+ERROR 1075 (42000): Incorrect table definition; there can be only one auto column and it must be defined as a key
+mysql> ALTER TABLE EMPLOYEE MODIFY EM_ID INT AUTO_INCREMENT PRIMARY KEY;
+Query OK, 0 rows affected (0.735 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> INSERT INTO EMPLOYEE VALUES (101,'SARAN','IT',5500);
+Query OK, 1 row affected (0.348 sec)
+
+mysql> INSERT INTO EMPLOYE VALUES (NULL,'ANITHA','HR',45000);
+ERROR 1146 (42S02): Table 'employee.employe' doesn't exist
+mysql> INSERT INTO EMPLOYEE VALUES (NULL,'ANITHA','HR',45000);
+Query OK, 1 row affected (0.334 sec)
+
+mysql>  INSERT INTO EMPLOYEE VALUES (NULL,'KARTHICK','FINANCE',60000);
+Query OK, 1 row affected (0.346 sec)
+
+mysql> INSERT INTO EMPLOYEE VALUES (NULL,'SNEHA','IT',65000);
+Query OK, 1 row affected (0.337 sec)
+
+mysql> INSERT INTO EMPLOYEE VALUES (NULL,'ARJUN','MARKETING',48000);
+Query OK, 1 row affected (0.034 sec)
+
+mysql> INSERT INTO EMPLOYEE VALUES (NULL,'SOWMYA','HR',52000);
+Query OK, 1 row affected (0.039 sec)
+
+mysql> INSERT INTO EMPLOYEE VALUES (NULL,'VARUN','FINANCE',58000);
+Query OK, 1 row affected (0.326 sec)
+
+mysql> INSERT INTO EMPLOYEE VALUES (NULL,'PRIYA','IT',62000);
+Query OK, 1 row affected (0.057 sec)
+
+mysql> INSERT INTO EMPLOYEE VALUES (NULL,'CHARAN','SALES',43000);
+Query OK, 1 row affected (0.334 sec)
+
+mysql> INSERT INTO EMPLOYEE VALUES (NULL,'SRAVYA','MARKETING',70000);
+Query OK, 1 row affected (0.365 sec)
+
+mysql> INSERT INTO EMPLOYEE VALUES (NULL,'RAHUL','IT',54000);
+Query OK, 1 row affected (0.042 sec)
+
+mysql> INSERT INTO EMPLOYEE VALUES (NULL,'DEEPA','HR',47000);
+Query OK, 1 row affected (0.327 sec)
+
+mysql> INSERT INTO EMPLOYEE VALUES (NULL,'NIKHIL','FINANCE',51000);
+Query OK, 1 row affected (0.325 sec)
+
+mysql> INSERT INTO EMPLOYEE VALUES (NULL,'TEJAS','IT',67000);
+Query OK, 1 row affected (0.336 sec)
+
+mysql> INSERT INTO EMPLOYEE VALUES (NULL,'RISHI','SALES',46000);
+Query OK, 1 row affected (0.327 sec)
+
+mysql> SELECT * FROM EMPLOYEE;
++-------+----------+-----------+-----------+
+| EM_ID | EM_NAME  | EM_DEPART | EM_SALARY |
++-------+----------+-----------+-----------+
+|   101 | SARAN    | IT        |      5500 |
+|   102 | ANITHA   | HR        |     45000 |
+|   103 | KARTHICK | FINANCE   |     60000 |
+|   104 | SNEHA    | IT        |     65000 |
+|   105 | ARJUN    | MARKETING |     48000 |
+|   106 | SOWMYA   | HR        |     52000 |
+|   107 | VARUN    | FINANCE   |     58000 |
+|   108 | PRIYA    | IT        |     62000 |
+|   109 | CHARAN   | SALES     |     43000 |
+|   110 | SRAVYA   | MARKETING |     70000 |
+|   111 | RAHUL    | IT        |     54000 |
+|   112 | DEEPA    | HR        |     47000 |
+|   113 | NIKHIL   | FINANCE   |     51000 |
+|   114 | TEJAS    | IT        |     67000 |
+|   115 | RISHI    | SALES     |     46000 |
++-------+----------+-----------+-----------+
+15 rows in set (0.308 sec)
+
+mysql> UPDATE EMPLOYEE SET EM_SALARY=55000 WHERE EM_ID=101;
+Query OK, 1 row affected (0.169 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> INSERT INTO EMPLOYEE VALUES (NULL,'MAHI','IT',96000);
+Query OK, 1 row affected (0.342 sec)
+
+mysql> INSERT INTO EMPLOYEE VALUES (NULL,'HARI','SALES',86000),(NULL,'NARESH','IT',97000);
+Query OK, 2 rows affected (0.337 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> UPDATE EMPLOYEE SET EM_SALARY=59000 WHERE EM_ID=101;
+Query OK, 1 row affected (0.039 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> UPDATE EMPLOYEE SET EM_DEPART='HR' WHERE EM_ID=105;
+Query OK, 1 row affected (0.036 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> UPDATE EMPLOYEE SET EM_SALARY=EM_SALARY+5000 WHERE EM_SALARY;
+Query OK, 18 rows affected (0.338 sec)
+Rows matched: 18  Changed: 18  Warnings: 0
+
+mysql> UPDATE EMPLOYEE SET EM_SALARY=(EM_SALARY*0.1)+EM_SALARY WHERE EM_DEPART='HR';
+Query OK, 4 rows affected (0.353 sec)
+Rows matched: 4  Changed: 4  Warnings: 0
+
+mysql> DELETE EM_NAME FROM EMPLOYEE WHERE EM_ID=115;
+ERROR 1109 (42S02): Unknown table 'em_name' in MULTI DELETE
+mysql> DELETE FROM EMPLOYEE WHERE EM_ID=115;
+Query OK, 1 row affected (0.360 sec)
+
+mysql> DELETE FROM EMPLOYEE WHERE EM_DEPART='SALES';
+Query OK, 2 rows affected (0.342 sec)
+
+mysql> INSERT INTO EMPLOYEE VALUES (NULL,'RUPESH','SALES',86000),(NULL,'PANDU','SALES',97000);
+Query OK, 2 rows affected (0.332 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> SELECT * FROM EMPLOYEE;
++-------+----------+-----------+-----------+
+| EM_ID | EM_NAME  | EM_DEPART | EM_SALARY |
++-------+----------+-----------+-----------+
+|   101 | SARAN    | IT        |     64000 |
+|   102 | ANITHA   | HR        |     55000 |
+|   103 | KARTHICK | FINANCE   |     65000 |
+|   104 | SNEHA    | IT        |     70000 |
+|   105 | ARJUN    | HR        |     58300 |
+|   106 | SOWMYA   | HR        |     62700 |
+|   107 | VARUN    | FINANCE   |     63000 |
+|   108 | PRIYA    | IT        |     67000 |
+|   110 | SRAVYA   | MARKETING |     75000 |
+|   111 | RAHUL    | IT        |     59000 |
+|   112 | DEEPA    | HR        |     57200 |
+|   113 | NIKHIL   | FINANCE   |     56000 |
+|   114 | TEJAS    | IT        |     72000 |
+|   116 | MAHI     | IT        |    101000 |
+|   118 | NARESH   | IT        |    102000 |
+|   119 | RUPESH   | SALES     |     86000 |
+|   120 | PANDU    | SALES     |     97000 |
++-------+----------+-----------+-----------+
+17 rows in set (0.007 sec)
+
+mysql> SELECT EM_NAME FROM EMPLOYEE;
++----------+
+| EM_NAME  |
++----------+
+| SARAN    |
+| ANITHA   |
+| KARTHICK |
+| SNEHA    |
+| ARJUN    |
+| SOWMYA   |
+| VARUN    |
+| PRIYA    |
+| SRAVYA   |
+| RAHUL    |
+| DEEPA    |
+| NIKHIL   |
+| TEJAS    |
+| MAHI     |
+| NARESH   |
+| RUPESH   |
+| PANDU    |
++----------+
+17 rows in set (0.007 sec)
+
+mysql> SELECT EM_NAME,EM_SALARY FROM EMPLOYEE;
++----------+-----------+
+| EM_NAME  | EM_SALARY |
++----------+-----------+
+| SARAN    |     64000 |
+| ANITHA   |     55000 |
+| KARTHICK |     65000 |
+| SNEHA    |     70000 |
+| ARJUN    |     58300 |
+| SOWMYA   |     62700 |
+| VARUN    |     63000 |
+| PRIYA    |     67000 |
+| SRAVYA   |     75000 |
+| RAHUL    |     59000 |
+| DEEPA    |     57200 |
+| NIKHIL   |     56000 |
+| TEJAS    |     72000 |
+| MAHI     |    101000 |
+| NARESH   |    102000 |
+| RUPESH   |     86000 |
+| PANDU    |     97000 |
++----------+-----------+
+17 rows in set (0.304 sec)
+
+mysql> SELECT EM_ID,EM_DEPART FROM EMPLOYEE;
++-------+-----------+
+| EM_ID | EM_DEPART |
++-------+-----------+
+|   101 | IT        |
+|   102 | HR        |
+|   103 | FINANCE   |
+|   104 | IT        |
+|   105 | HR        |
+|   106 | HR        |
+|   107 | FINANCE   |
+|   108 | IT        |
+|   110 | MARKETING |
+|   111 | IT        |
+|   112 | HR        |
+|   113 | FINANCE   |
+|   114 | IT        |
+|   116 | IT        |
+|   118 | IT        |
+|   119 | SALES     |
+|   120 | SALES     |
++-------+-----------+
+17 rows in set (0.008 sec)
+
+mysql> SELECT EM_NAME,EM_SALARY,EM_DEPART FROM EMPLOYEE;
++----------+-----------+-----------+
+| EM_NAME  | EM_SALARY | EM_DEPART |
++----------+-----------+-----------+
+| SARAN    |     64000 | IT        |
+| ANITHA   |     55000 | HR        |
+| KARTHICK |     65000 | FINANCE   |
+| SNEHA    |     70000 | IT        |
+| ARJUN    |     58300 | HR        |
+| SOWMYA   |     62700 | HR        |
+| VARUN    |     63000 | FINANCE   |
+| PRIYA    |     67000 | IT        |
+| SRAVYA   |     75000 | MARKETING |
+| RAHUL    |     59000 | IT        |
+| DEEPA    |     57200 | HR        |
+| NIKHIL   |     56000 | FINANCE   |
+| TEJAS    |     72000 | IT        |
+| MAHI     |    101000 | IT        |
+| NARESH   |    102000 | IT        |
+| RUPESH   |     86000 | SALES     |
+| PANDU    |     97000 | SALES     |
++----------+-----------+-----------+
+17 rows in set (0.007 sec)
+
+mysql> SELECT EM_NAME FROM EMPLOYEE WHERE EM_DEPART='IT';
++---------+
+| EM_NAME |
++---------+
+| SARAN   |
+| SNEHA   |
+| PRIYA   |
+| RAHUL   |
+| TEJAS   |
+| MAHI    |
+| NARESH  |
++---------+
+7 rows in set (0.033 sec)
+
+mysql> SELECT EM_NAME FROM EMPLOYEE WHERE EM_DEPART='HR';
++---------+
+| EM_NAME |
++---------+
+| ANITHA  |
+| ARJUN   |
+| SOWMYA  |
+| DEEPA   |
++---------+
+4 rows in set (0.005 sec)
+
+mysql> SELECT EM_NAME FROM EMPLOYEE WHERE EM_SALARY>60000;
++----------+
+| EM_NAME  |
++----------+
+| SARAN    |
+| KARTHICK |
+| SNEHA    |
+| SOWMYA   |
+| VARUN    |
+| PRIYA    |
+| SRAVYA   |
+| TEJAS    |
+| MAHI     |
+| NARESH   |
+| RUPESH   |
+| PANDU    |
++----------+
+12 rows in set (0.006 sec)
+
+mysql> SELECT EM_NAME FROM EMPLOYEE WHERE EM_SALARY<50000;
+Empty set (0.039 sec)
+
+mysql> SELECT EM_NAME FROM EMPLOYEE WHERE EM_SALARY=50000;
+Empty set (0.005 sec)
+
+mysql> SELECT EM_NAME FROM EMPLOYEE WHERE EM_SALARY=70000;
++---------+
+| EM_NAME |
++---------+
+| SNEHA   |
++---------+
+1 row in set (0.005 sec)
+
+mysql> SELECT EM_NAME FROM EMPLOYEE WHERE EM_SALARY>60000 AND EM_DEPART='IT';
++---------+
+| EM_NAME |
++---------+
+| SARAN   |
+| SNEHA   |
+| PRIYA   |
+| TEJAS   |
+| MAHI    |
+| NARESH  |
++---------+
+6 rows in set (0.005 sec)
+
+mysql> SELECT EM_NAME FROM EMPLOYEE WHERE EM_SALARY<50000 AND EM_DEPART='HR';
+Empty set (0.005 sec)
+
+mysql> SELECT EM_NAME FROM EMPLOYEE WHERE EM_SALARY=55000 AND EM_DEPART='FINANCE';
+Empty set (0.006 sec)
+
+mysql> SELECT EM_NAME FROM EMPLOYEE WHERE EM_DEPART='HR'OR 'FINANCE';
++---------+
+| EM_NAME |
++---------+
+| ANITHA  |
+| ARJUN   |
+| SOWMYA  |
+| DEEPA   |
++---------+
+4 rows in set, 1 warning (0.043 sec)
+
+mysql> SELECT EM_NAME FROM EMPLOYEE WHERE EM_DEPART='IT'OR 'MARKETING';
++---------+
+| EM_NAME |
++---------+
+| SARAN   |
+| SNEHA   |
+| PRIYA   |
+| RAHUL   |
+| TEJAS   |
+| MAHI    |
+| NARESH  |
++---------+
+7 rows in set, 1 warning (0.004 sec)
+
+mysql> SELECT EM_NAME FROM EMPLOYEE WHERE EM_SALARY<45000 OR EM_SALARY>65000;
++---------+
+| EM_NAME |
++---------+
+| SNEHA   |
+| PRIYA   |
+| SRAVYA  |
+| TEJAS   |
+| MAHI    |
+| NARESH  |
+| RUPESH  |
+| PANDU   |
++---------+
+8 rows in set (0.006 sec)
+
+mysql> SELECT EM_NAME FROM EMPLOYEE WHERE NOT EM_DEPART='HR';
++----------+
+| EM_NAME  |
++----------+
+| SARAN    |
+| KARTHICK |
+| SNEHA    |
+| VARUN    |
+| PRIYA    |
+| SRAVYA   |
+| RAHUL    |
+| NIKHIL   |
+| TEJAS    |
+| MAHI     |
+| NARESH   |
+| RUPESH   |
+| PANDU    |
++----------+
+13 rows in set (0.036 sec)
+
+mysql> SELECT EM_NAME FROM EMPLOYEE WHERE NOT EM_DEPART='IT';
++----------+
+| EM_NAME  |
++----------+
+| ANITHA   |
+| KARTHICK |
+| ARJUN    |
+| SOWMYA   |
+| VARUN    |
+| SRAVYA   |
+| DEEPA    |
+| NIKHIL   |
+| RUPESH   |
+| PANDU    |
++----------+
+10 rows in set (0.006 sec)
+
+mysql> SELECT EM_NAME FROM EMPLOYEE WHERE NOT EM_SALARY=55000;
++----------+
+| EM_NAME  |
++----------+
+| SARAN    |
+| KARTHICK |
+| SNEHA    |
+| ARJUN    |
+| SOWMYA   |
+| VARUN    |
+| PRIYA    |
+| SRAVYA   |
+| RAHUL    |
+| DEEPA    |
+| NIKHIL   |
+| TEJAS    |
+| MAHI     |
+| NARESH   |
+| RUPESH   |
+| PANDU    |
++----------+
+16 rows in set (0.006 sec)
+
+mysql> SELECT EM_NAME FROM EMPLOYEE ASC;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ASC' at line 1
+mysql> SELECT EM_NAME FROM EMPLOYEE ORDER BY EM_SALARY ASC;
++----------+
+| EM_NAME  |
++----------+
+| ANITHA   |
+| NIKHIL   |
+| DEEPA    |
+| ARJUN    |
+| RAHUL    |
+| SOWMYA   |
+| VARUN    |
+| SARAN    |
+| KARTHICK |
+| PRIYA    |
+| SNEHA    |
+| TEJAS    |
+| SRAVYA   |
+| RUPESH   |
+| PANDU    |
+| MAHI     |
+| NARESH   |
++----------+
+17 rows in set (0.046 sec)
+
+mysql> SELECT EM_NAME FROM EMPLOYEE ORDER BY EM_SALARY DESC;
++----------+
+| EM_NAME  |
++----------+
+| NARESH   |
+| MAHI     |
+| PANDU    |
+| RUPESH   |
+| SRAVYA   |
+| TEJAS    |
+| SNEHA    |
+| PRIYA    |
+| KARTHICK |
+| SARAN    |
+| VARUN    |
+| SOWMYA   |
+| RAHUL    |
+| ARJUN    |
+| DEEPA    |
+| NIKHIL   |
+| ANITHA   |
++----------+
+17 rows in set (0.006 sec)
+
+mysql> SELECT EM_NAME FROM EMPLOYEE ORDER BY EM_NAME ASC;
++----------+
+| EM_NAME  |
++----------+
+| ANITHA   |
+| ARJUN    |
+| DEEPA    |
+| KARTHICK |
+| MAHI     |
+| NARESH   |
+| NIKHIL   |
+| PANDU    |
+| PRIYA    |
+| RAHUL    |
+| RUPESH   |
+| SARAN    |
+| SNEHA    |
+| SOWMYA   |
+| SRAVYA   |
+| TEJAS    |
+| VARUN    |
++----------+
+17 rows in set (0.007 sec)
+
+mysql> SELECT EM_NAME FROM EMPLOYEE ORDER BY EM_DEPART ASC;
++----------+
+| EM_NAME  |
++----------+
+| KARTHICK |
+| VARUN    |
+| NIKHIL   |
+| ANITHA   |
+| ARJUN    |
+| SOWMYA   |
+| DEEPA    |
+| SARAN    |
+| SNEHA    |
+| PRIYA    |
+| RAHUL    |
+| TEJAS    |
+| MAHI     |
+| NARESH   |
+| SRAVYA   |
+| RUPESH   |
+| PANDU    |
++----------+
+17 rows in set (0.004 sec)
+
+mysql> SELECT DISTINCT EM_DEPART FROM EMPLOYEE;
++-----------+
+| EM_DEPART |
++-----------+
+| IT        |
+| HR        |
+| FINANCE   |
+| MARKETING |
+| SALES     |
++-----------+
+5 rows in set (0.036 sec)
+
+mysql> SELECT DISTINCT EM_SALRY FROM EMPLOYEE;
+ERROR 1054 (42S22): Unknown column 'EM_SALRY' in 'field list'
+mysql> SELECT DISTINCT EM_SALARY FROM EMPLOYEE;
++-----------+
+| EM_SALARY |
++-----------+
+|     64000 |
+|     55000 |
+|     65000 |
+|     70000 |
+|     58300 |
+|     62700 |
+|     63000 |
+|     67000 |
+|     75000 |
+|     59000 |
+|     57200 |
+|     56000 |
+|     72000 |
+|    101000 |
+|    102000 |
+|     86000 |
+|     97000 |
++-----------+
+17 rows in set (0.007 sec)
+
+mysql> SELECT EM_NAME FROM EMPLOYEE LIMIT 5;
++----------+
+| EM_NAME  |
++----------+
+| SARAN    |
+| ANITHA   |
+| KARTHICK |
+| SNEHA    |
+| ARJUN    |
++----------+
+5 rows in set (0.005 sec)
+
+mysql> SELECT EmpName, Salary
+    -> FROM Employees
+    -> ORDER BY Salary DESC
+    -> LIMIT 3
+    -> ;
+ERROR 1146 (42S02): Table 'employee.employees' doesn't exist
+mysql> SELECT EM_NAME ,EM_SALARY FROM EMPLOYEE ORDER BY EM_SALARY DESC LIMIT 3;
++---------+-----------+
+| EM_NAME | EM_SALARY |
++---------+-----------+
+| NARESH  |    102000 |
+| MAHI    |    101000 |
+| PANDU   |     97000 |
++---------+-----------+
+3 rows in set (0.006 sec)
+
+mysql> SELECCT EM_NAME FROM EMPLOYEE WHERE EM_SALARY BETWEEN 45000 AND 60000;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'SELECCT EM_NAME FROM EMPLOYEE WHERE EM_SALARY BETWEEN 45000 AND 60000' at line 1
+mysql> SELECT EM_NAME FROM EMPLOYEE WHERE EM_SALARY BETWEEN 45000 AND 60000;
++---------+
+| EM_NAME |
++---------+
+| ANITHA  |
+| ARJUN   |
+| RAHUL   |
+| DEEPA   |
+| NIKHIL  |
++---------+
+5 rows in set (0.052 sec)
+
+mysql> SELECT EM_NAME FROM EMPLOYEE WHERE EM_ID BETWEEN 105 AND 112;
++---------+
+| EM_NAME |
++---------+
+| ARJUN   |
+| SOWMYA  |
+| VARUN   |
+| PRIYA   |
+| SRAVYA  |
+| RAHUL   |
+| DEEPA   |
++---------+
+7 rows in set (0.008 sec)
+
+mysql> SELECT EM_NAME FROM EMPLOYEE WHERE EM_DEPART IN('IT','FINANCE');
++----------+
+| EM_NAME  |
++----------+
+| SARAN    |
+| KARTHICK |
+| SNEHA    |
+| VARUN    |
+| PRIYA    |
+| RAHUL    |
+| NIKHIL   |
+| TEJAS    |
+| MAHI     |
+| NARESH   |
++----------+
+10 rows in set (0.033 sec)
+
+mysql> SELECT EM_NAME FROM EMPLOYEE WHERE EM_DEPART IN('HR','SALES','MARKETING');
++---------+
+| EM_NAME |
++---------+
+| ANITHA  |
+| ARJUN   |
+| SOWMYA  |
+| SRAVYA  |
+| DEEPA   |
+| RUPESH  |
+| PANDU   |
++---------+
+7 rows in set (0.004 sec)
+
+mysql> SELECT COUNT(EM_NAME)FROM EMPLOYEE;
++----------------+
+| COUNT(EM_NAME) |
++----------------+
+|             17 |
++----------------+
+1 row in set (0.300 sec)
+
+mysql> SELECT SUM(EM_SALARY)FROM EMPLOYEE;
++----------------+
+| SUM(EM_SALARY) |
++----------------+
+|        1210200 |
++----------------+
+1 row in set (0.006 sec)
+
+mysql> SELECT AVG(EM_SALARY)FROM EMPLOYEE;
++----------------+
+| AVG(EM_SALARY) |
++----------------+
+|     71188.2353 |
++----------------+
+1 row in set (0.035 sec)
+
+mysql> SELECT MAX(EM_SALARY)FROM EMPLOYEE;
++----------------+
+| MAX(EM_SALARY) |
++----------------+
+|         102000 |
++----------------+
+1 row in set (0.006 sec)
+
+mysql> SELECT MIN(EM_SALARY)FROM EMPLOYEE;
++----------------+
+| MIN(EM_SALARY) |
++----------------+
+|          55000 |
++----------------+
+1 row in set (0.006 sec)
+
+mysql>
